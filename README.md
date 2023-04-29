@@ -1,1 +1,1 @@
-# New-Student_message_board
+# Students Message Board (SMB IITH)
