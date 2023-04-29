@@ -21,6 +21,10 @@
             display: flex;
             justify-content: space-around;
         }
+        #side-nav{
+            position:fixed;
+            justify-content: space-around;
+        }
         #logout-btn{
             background-color: rgb(50, 122, 255);
         }
@@ -41,7 +45,7 @@
             /* padding-bottom: 20px; */
             font-weight: normal;
         }
-        @media screen and (max-width: 600px) {
+        @media screen and (max-width: 400px) {
             #fh6{
                 font-size: 15px;
                 text-align: right;
@@ -70,6 +74,7 @@
         }
         a{
             color: rgb(0, 132, 255);
+            text-align: top left
         }
         a:hover{
             text-decoration: none;
@@ -84,7 +89,7 @@
 <body>
     <div class="container">
         <div id="sub-nav">
-            <h1 id="fh1">Top Questions</h1>
+            <h1 id="fh1">All Questions</h1>
             {% if user.is_authenticated %}
             <button class="btn" id="logout-btn"><a id="fa" href="{% url 'stackbase:question-create'%}" style="color: white; text-decoration: none;">Ask Question</a></button>
             {% else %}
@@ -94,7 +99,7 @@
         <div class="list-question">
             <div class="questions">
                 {% for question in questions %}
-                <div class="container" style="background: linear-gradient(to right, rgb(255, 226, 182), rgba(255, 166, 0, 0.027)); padding: 5px; box-shadow: rgba(0, 0, 0, 0.383) 0px 5px 5px 0px; border-radius: 15px;" >
+                <div class="container" style="background: linear-gradient(to right, #b6ffe5, rgba(255, 166, 0, 0.027)); padding: 5px; box-shadow: rgba(0, 0, 0, 0.383) 0px 5px 5px 0px; border-radius: 15px;" >
                     <div id="title-sec" style="display: flex; align-items: center;">
                         <!-- <a href="{% url 'profile' %}"><img src="{{ request.user.profile.image.url }}" style="width: 50px;"></a></img> -->
                         <h3 id="fh3"><a href="{% url 'stackbase:question-detail' question.id%}">{{ question.title }}</a></h3>
@@ -112,6 +117,7 @@
             </div>
         </div>   
     </div>
+    
 </body>
 </html>
 {% endblock content %}
