@@ -294,19 +294,19 @@ a{
           </div>
       
           <!-- Login Form -->
-          <!-- <form method="POST">
+          <form method="POST">
                 {% csrf_token %}
-                <div class="container" p> -->
-                  <!-- {{form|crispy}} -->
-                  <!-- <input type="submit" class="fadeIn fourth" value="Sign In"> -->
-          <!-- </form> -->
+                <div class="container" p> 
+                  {{form|crispy}}
+                   <input type="submit" class="fadeIn fourth" value="Sign In">
+          </form>
 
-          <form action="" method="POST">
+          <!-- <form action="" method="POST">
             {% csrf_token %}
             {{form|crispy}}
             <input type="submit" class="fadeIn fourth" value="Sign In">
 
-          </form>
+          </form> -->
     
           <!-- Remind Passowrd -->
           <div id="formFooter">
