@@ -188,22 +188,22 @@
                                         <div class="row">
                                         <div class="col-sm-6">
                                             <p class="m-b-10 f-w-600">Occupation</p>
-                                            <h6 class="text-muted f-w-400"><!-- Add occupation -->{{ "Student" }}</h6>
+                                            <h6 class="text-muted f-w-400"><!-- Add occupation -->{{ user.profile.occupation|title}}</h6>
                                         </div>
                                         </div>
                                         <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Activity</h6>
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <p class="m-b-10 f-w-600">Recent question</p>
-                                                <h6 class="text-muted f-w-400"><a href="#">Project1</a></h6>
-                                            </div>
+                                                <h6 class="text-muted f-w-400"><a href="127.0.0.1:8000/home">Recent</a></h6>
+                                            </div> 
                                             <div class="col-sm-6">
                                                 <p class="m-b-10 f-w-600">Most Viewed</p>
                                                 <h6 class="text-muted f-w-400"><a href="#">Project2</a></h6>
                                             </div>
                                             <div style="margin-top: 55px;">
-                                                <button class="btn btn-secondary" id="logout-btn"><a id="fa" href="" style="color: white; text-decoration: none;">Ask Question</a></button>
-                                                <button class="btn btn-outline-primary" id="logout-btn"><a id="fa" href="" style="color: rgb(0, 0, 0); text-decoration: none;">View Questions</a></button>
+                                                <button class="btn btn-secondary" id="logout-btn"><a id="fa" href="/questions/new" style="color: white; text-decoration: none;">Ask Question</a></button>
+                                                <button class="btn btn-outline-primary" id="logout-btn"><a id="fa" href="/" style="color: rgb(0, 0, 0); text-decoration: none;">View Questions</a></button>
                                             </div>
                                         </div>
                                         
