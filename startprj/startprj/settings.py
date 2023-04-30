@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'stackbase',
-    'stackusers',
+    'stackuser',
     'crispy_forms',
     'crispy_bootstrap4',
     'ckeditor',
