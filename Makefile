@@ -1,9 +1,18 @@
-#make :
-#      py -m venv venv
-#	  venv\Scripts\activate.bat
+# Define the default target
+.DEFAULT_GOAL=make
+VENV=venv
+PYTHON=python3
+DIR=venv/bin/activate
+Sou=source
 
-RM=rm -r
-folder=venv
+# Define the target for building the project
+.PHONY: make
+make:
+    $(PYTHON) -m $(VENV) venv && \
+    $(Sou) $(DIR)
 
-clean : 
-       $(RM) $(folder)
+
+# Define the target for cleaning the project
+.PHONY: clean
+clean:
+      rm -r $(VENV)
