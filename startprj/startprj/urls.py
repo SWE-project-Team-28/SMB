@@ -23,4 +23,6 @@ from django.conf import settings
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', include('stackbase.urls')),
+    path('register/', user_view.register, name="register"),
+    path('login/', auth_view.LoginView.as_view(template_name="stackuser/login.html"), name='login'),
 ]
