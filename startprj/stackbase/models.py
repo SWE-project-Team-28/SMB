@@ -8,6 +8,7 @@ class Question(models.Model):
     content = RichTextUploadingField()
     # likes = models.ManyToManyField(User, related_name='question_post')
     date_created = models.DateTimeField(default=timezone.now)   
+    tag = TaggableManager()
     def __str__(self):
         return f'{self.user.username} - Question'
     
