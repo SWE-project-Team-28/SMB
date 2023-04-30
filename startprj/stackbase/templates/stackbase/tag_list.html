@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <h1 class="text-center my-5">All Existing Tags</h1>
+    <div class="row justify-content-center">
+        {% for tag in tag_list %}
+        <div class="col-md-3 my-3">
+            <div class="card border-0">
+                <div class="card-body d-flex align-items-center justify-content-center bg-light" style="height: 100px;">
+                    <a href="{% url 'stackbase:tag-question' tag_name=tag.name %}" class="btn btn-primary btn-lg">{{ tag.name }}</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
