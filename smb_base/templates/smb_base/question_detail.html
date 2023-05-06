@@ -1,0 +1,118 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500&display=swap" rel="stylesheet">
+    
+    <style>
+        body{
+            margin-top: 100px;
+            font-family: 'Poppins', sans-serif;
+        }
+        #fh1{
+            margin-top: 20px;
+        }
+        #sub-nav{
+            display: flex;
+            justify-content: space-around;
+        }
+        
+        #fh3{
+            text-align: center;
+            font-size: 30px;
+            padding-top: 20px;
+            text-align: left;
+            margin-left: 10px;
+        }
+        @media screen and (max-width: 600px) {
+            #fh3{
+                font-size: 20px;
+                text-align: left;
+                margin-left: 10px;
+            }
+        }
+        #fh4{
+            text-align: left;
+            font-size: 17px;
+            padding-top: 20px; 
+            padding-bottom: 20px;
+            font-weight: normal;
+            margin-left: 10px;
+        }
+        @media screen and (max-width: 600px) {
+            #fh4{
+                font-size: 15px;
+                text-align: left;
+                font-weight: normal;
+                margin-left: 10px;
+            }
+        }
+        
+        
+        #f17{
+            float: right;
+        }
+        .change{
+            float:left;
+            margin-top: 20px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="sub-nav">
+            
+        </div>
+        <div class="list-question">
+            <div class="questions">
+                <div class="container" style="background-color: rgba(255, 235, 209, 0.808); padding: 5px; box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 5px 0px; border-radius: 20px;" >
+                    <h3 id="fh3">{{question.title}}</h3>
+                    <hr>
+                    <h6 id="fh4">{{ question.content|safe }}</h6>
+                    <hr>
+                    <div id = "f17" class="tags">
+                        {% for tag in question.tag.all %}
+                          <a href="{% url 'smb_base:question-tag' pk=question.pk tag_name=tag.name%}" class="btn-primary">{{ tag.name }}</a>
+                        {% endfor %}
+                    </div>
+                    <h6 id="fh4" style="font-size: 12px; font-style: italic; color: rgb(119, 117, 117);">Asked By: <a href="{% url 'profile' %}">{{ object.user|title }}</a>&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp; On: {{ object.date_created|date:"j F, Y" }}</h6>
+                    <h2 style = "text-decoration-line: underline; font-size:20px; margin-left: 10px">Answers</h2> <br>
+
+                    {% if not question.comment.all %}
+                        <h3>No Answers yet...</h3>
+                    {% else %}
+                        {% for comment in question.comment.all %}
+                            <h3 style="font-weight: normal; font-size: 17px; margin-left: 10px;">{{comment.content|safe}}</h3>
+                        <br>
+                           
+                        
+                            <h3 style="font-size: 12px; margin-left: 10px ; color:blue;">Answered by: <i><a href="">{{comment.name}}</a> - On: {{comment.date_created|date:"j F, Y"}}</i></h3>
+                            <hr>  
+                        {% endfor %}
+                    {% endif %}
+                    <div class = "change">
+                        <a class="btn btn-outline-primary" id="fa" href="{% url 'smb_base:question-comment' question.id %}" style="text-decoration: none;">Answer Question</a>
+                        <a style="text-decoration: none; " class="btn btn-outline-success" href="{% url 'smb_base:question-update' question.id %}">edit</a>
+                        <a style="text-decoration: none; " class="btn btn-outline-danger" href="{% url 'smb_base:question-delete' question.id %}">delete</a>
+                        <a style="text-decoration: none; " class="btn btn-outline-secondary" href="{% url 'smb_base:question-lists' %}">go back</a>
+                    </div>
+                </div> <br><br>
+                    
+                
+                </div> <br>
+            </div>
+        </div>
+        <br>
+        
+    </div>
+    
+</body>
+</html>
+{% endblock content %}
