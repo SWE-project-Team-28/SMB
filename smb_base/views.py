@@ -14,7 +14,28 @@ from django.views.decorators.csrf import csrf_protect
 from django.db.models import Q
 from django.utils.decorators import method_decorator
 
+class Tag_List_View(ListView):
+    template_name = 'smb_base/tag_list.html'
+    context_object_name = 'tag_list'
+    model = Tag
+    def tag_list(request):
+        tag_list = Tag.objects.all()
+        return render(request, 'smb_base:tag-list', {'tag_list': tag_list})
+    
+class Question_List_By_Tag_View(ListView):
+    template_name = 'questions_by_tag.html'
+    context_object_name = 'questions'
 
+    def get_queryset(self):
+        tag_name = self.kwargs['tag_name']
+        queryset = Question.objects.filter(tag__name__in=[tag_name])
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['tag_name'] = self.kwargs['tag_name']
+        return context
+    
 class Question_Detail_View(DetailView):
 
     model = Question
