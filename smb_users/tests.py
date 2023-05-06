@@ -40,5 +40,18 @@ class ProfilePageTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, '/questions/new')
 
+    def test_view_questions_button(self):
+        response = self.client.get(reverse('profile'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, '/questions')
 
+    def test_update_profile(self):
+        response = self.client.post('/profile/update', {'Username':'changed','Email':'changed@iith.ac.in','bio':'bio'})
+        self.assertEqual(response.status_code, 302)
+        
+        # Refresh the user from the database
+        self.user.refresh_from_db()
+        
+        # Check that the profile has been updated
+        self.assertEqual(self.user.Username, 'changed')
         
