@@ -7,7 +7,25 @@ from ckeditor_uploader.fields import RichTextUploadingField
 from django.conf import settings
 from taggit.models import Tag
 
+class Question(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=10000)
+    content = RichTextUploadingField()
+    date_created = models.DateTimeField(default=timezone.now)   
+    tag = TaggableManager()
+    
+    def __str__(self):
+        return f'Question by {self.user.username}'
+    
+    def get_absolute_url(self):
+        return reverse('smb_base:question-detail', kwargs={'pk':self.pk})
+    
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
 
+        for tag_name in self.tag.all():
+            tag, created = Tag.objects.get_or_create(name=tag_name.name)
+            tag.save()
 
 class Comment(models.Model):
     question = models.ForeignKey(Question, related_name="comment", on_delete=models.CASCADE)
