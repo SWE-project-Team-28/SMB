@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+        
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+        background-color: white
+        
+    }
+
+    .padding {
+        padding-top: 6rem !important
+    }
+
+    .user-card-full {
+        overflow: hidden
+    }
+
+    .card {
+        border-radius: 5px;
+        -webkit-box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
+        box-shadow: 0 1px 20px 0 rgba(53, 53, 53, 0.452);
+        border: none;
+        margin-bottom: 30px
+    }
+
+    .mar-r-0 {
+        margin-right: 0px
+    }
+
+    .mar-l-0 {
+        margin-left: 0px
+    }
+
+    .user-card-full .user-profile {
+        border-radius: 5px 0 0 5px
+    }
+
+    .bg-c-lite-green {
+        background: -webkit-gradient(linear, left top, right top, from(#61b3b9), to(#5addee));
+        background: linear-gradient(to right, rgb(109, 199, 211), rgb(105, 187, 187))
+    }
+
+    .user-profile {
+        padding: 20px 0
+    }
+
+    .card-block {
+        padding: 1.25rem
+    }
+
+    .mar-b-25 {
+        margin-bottom: 25px
+    }
+
+    .img-radius {
+        border-radius: 100px
+    }
+    @media only screen and (min-width: 1400px) {
+        .img-radius {
+        border-radius: 100px
+    }
+    }
+    head6 {
+        font-size: 13px;
+        font-family: 'Poppins', sans-serif;
+
+    }
+
+    @media only screen and (min-width: 1400px) {
+        p {
+            font-size: 14px
+        }
+    }
+
+    .fon-wt-600 {
+        font-weight: 600
+    }
+
+    .user-card-full .social-link li {
+        display: inline-block
+    }
+
+    .user-card-full .social-link li a {
+        font-size: 20px;
+        margin: 0 10px 0 0;
+        -webkit-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out
+    }
+    </style>
+</head>
+<body>
+    <div class="page-content page-container" id="page-content">
+        <div class="padding">
+            <div class="row  d-flex justify-content-center">
+                <div class="col-xl-6 col-md-12">
+                    <div class="card user-card-full">
+                        <div class="row mar-l-0 mar-r-0">
+                            <div class="col-sm-4 bg-c-lite-green user-profile">
+                                <div class="card-block text-center text-white">
+                                    <div class="mar-b-25"> <img src="{{ user.profile.image.url }}" class="img-radius" alt="User-Profile-Image"> </div>
+                                    <head6 class="fon-wt-600" style="font-size: 25px; color: black;"></head6>
+                                    <p style="font-size: 14px; color: black;"></p> <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="card-block">
+                                    </div>
+                                    <form action="" method="POST" enctype="multipart/form-data">
+                    
+                                        {% csrf_token %}
+                                        {{u_form|crispy}}
+                                        {{p_form|crispy}}
+                                        <button class="btn btn-success" id="logout-btn" type="submit">Update Profile</button>
+                                    </form>
+                                    <div style="margin-top: 10px;">
+                                           
+                                        <button class="btn btn-secondary" id="logout-btn" type="submit"><a id="fa" href="/profile" style="color: white; text-decoration: none;">Back to Profile</a></button>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        feather.replace()
+      </script>
+</body>
+</html>
+
+{% endblock content %}
