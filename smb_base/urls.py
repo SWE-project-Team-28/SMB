@@ -2,7 +2,6 @@ from django.urls import path
 from . import views
 
 app_name = 'smb_base'
-
 urlpatterns = [
     path('', views.Question_List_View.as_view(), name="question-lists"),
     
