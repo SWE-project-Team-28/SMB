@@ -1,0 +1,199 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title></title>
+        <script src="https://unpkg.com/feather-icons"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+
+        <style>
+            body {
+            background-color: whitesmoke
+
+        }
+
+        .padding {
+            padding-top: 6rem !important
+        }
+
+        .user-card-full {
+            overflow: hidden
+        }
+
+        .card {
+            border-radius: 5px;
+            -webkit-box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
+            box-shadow: 0 1px 20px 0 rgba(53, 53, 53, 0.452);
+            border: none;
+            margin-bottom: 30px
+        }
+
+        .r-mar-0 {
+            margin-right: 0px
+        }
+
+        .l-mar-0 {
+            margin-left: 0px
+        }
+
+        .user-card-full .user-profile {
+            border-radius: 5px 0 0 5px
+        }
+
+        .bg-c-lite-green {
+            background: -webkit-gradient(linear, left top, right top, from(#61b3b9), to(#5addee));
+            background: linear-gradient(to right, rgb(109, 199, 211), rgb(105, 187, 187))
+        }
+
+        .user-profile {
+            padding: 20px 0
+        }
+
+        .card-block {
+            padding: 1.25rem
+        }
+
+        .b-mar-25 {
+            margin-bottom: 25px
+        }
+
+        .img-radius {
+            border-radius: 100px
+        }
+        @media only screen and (min-width: 1400px) {
+            .img-radius {
+            border-radius: 100px
+        }
+        }
+        head6 {
+            font-size: 13px;
+            font-family: 'Poppins', sans-serif;
+
+        }
+
+        .card .card-block p {
+            line-height: 25px
+        }
+
+        @media only screen and (min-width: 1400px) {
+            p {
+                font-size: 14px
+            }
+        }
+
+        .card-block {
+            padding: 1.25rem
+        }
+
+
+        .b-mar-20 {
+            margin-bottom: 20px
+        }
+
+        .b-pad-5 {
+            padding-bottom: 5px !important
+        }
+
+        .card .card-block p {
+            line-height: 25px
+        }
+
+        .b-mar-10 {
+            margin-bottom: 10px
+        }
+
+        .text-muted {
+            color: #919aa3 !important
+        }
+
+        .b-brd-default {
+            border-bottom: 1px solid #e0e0e0
+        }
+
+        .fon-wt-600 {
+            font-weight: 600
+        }
+
+        .t-mar-40 {
+            margin-top: 20px
+        }
+
+        .user-card-full .social-link li {
+            display: inline-block
+        }
+
+        .user-card-full .social-link li a {
+            font-size: 20px;
+            margin: 0 10px 0 0;
+            -webkit-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out
+        }
+        </style>
+    </head>
+    <body>
+        <div class="page-content page-container" id="page-content">
+            <div class="padding">
+                <div class="row  d-flex justify-content-center">
+                    <div class="col-xl-6 col-md-12">
+                        <div class="card user-card-full">
+                            <div class="row l-mar-0 r-mar-0">
+                                <div class="col-sm-4 bg-c-lite-green user-profile">
+                                    <div class="card-block text-center text-white">
+                                        <div class="b-mar-25"> <img src="{{ user.profile.image.url }}" class="img-radius" alt="User-Profile-Image"> </div>
+                                        <head6 class="fon-wt-600" style="font-size: 24px; color: black;"><!-- Add username here -->{{ user.username|title }}</head6>
+                    
+                                        <div style="margin-top: 10px;">
+                                            <button class="btn btn-primary" id="logout-btn"><a id="fa" href="{% url 'profile_update' %}" style="color: white; text-decoration: none;">Update Profile</a></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-8">
+                                    <div class="card-block">
+                                        <head6 class="b-mar-20 b-pad-5 b-brd-default fon-wt-600">User Details</head6>
+                        
+                                                <p class="b-mar-10 fon-wt-600">Email id</p>
+                                                <head6 class="text-muted f-w-400">{{ user.email }}</head6>
+                                           
+                                            <br>
+                                         
+                                                <p class="b-mar-10 fon-wt-600">Phone</p>
+                                                <head6 class="text-muted f-w-400">{{ user.profile.phone|title }}</head6>
+                           
+                                            <br>
+                                            <p class="b-mar-10 fon-wt-600">Occupation</p>
+                                            <head6 class="text-muted f-w-400">{{ user.profile.occupation}}</head6>
+                                    
+                                        <br>
+                                        <head6 class="b-mar-20 t-mar-40 b-pad-5 b-brd-default fon-wt-600">Activity</head6>
+                                       
+                                                <p class="b-mar-10 fon-wt-600">Asked questions</p>
+                                                <head6 class="text-muted f-w-400"><a href="{%url 'question_user' %}">Asked Questions</a></head6>
+                                    
+                                                <br>
+                                                <p class="b-mar-10 fon-wt-600">Answered questions</p>
+                                                <head6 class="text-muted f-w-400"><a href="/questions/">Answered Viewed</a></head6>
+                                           
+                                            <div style="margin-top: 55px;">
+                                                <button class="btn btn-secondary" id="logout-btn"><a id="fa" href="/questions/new" style="color: white; text-decoration: none;">Ask Question</a></button>
+                                                <button class="btn btn-outline-primary" id="logout-btn"><a id="fa" href="/" style="color: rgb(0, 0, 0); text-decoration: none;">View Questions</a></button>
+                                            </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            feather.replace()
+          </script>
+    </body>
+    </html>     
+{% endblock content %}
